@@ -1,18 +1,19 @@
-This package seems to specify an overly-restrictive version requirement 
-on the `tatsu` dependency. The version it wants is more than two years
-old and not packaged by conda-forge; meanwhile, things seem to work with
-newer versions.
+The `tatsu-lts` dependency is apparently interchangeable with mainline `tatsu`,
+except that it maintains compatibility with old versions of Python (see its PyPI 
+page). Since conda-forge is always keeping up with the latest Python versions, 
+it doesn't make sense for us to package both, and we can just drop in mainline 
+`tatsu` instead.
 
 diff --git a/pyproject.toml b/pyproject.toml
-index 5f38759f39..d4bc37e953 100644
+index 59c7c69..0fe5fda 100644
 --- a/pyproject.toml
 +++ b/pyproject.toml
 @@ -35,7 +35,7 @@ dependencies = [
      'beancount >= 2.3.4',
      'click > 7.0',
      'python-dateutil >= 2.6.0',
--    'tatsu >= 5.7.4, < 5.8.0',
-+    'tatsu >= 5.7.4',
+-    'tatsu-lts',
++    'tatsu',
  ]
  
  [project.optional-dependencies]
